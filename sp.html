@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Premium Spices Landing Page - Green Cardamom, Black Pepper & Cloves</title>
+    <style>
+        :root {
+            --header-height: 3rem;
+            /*========== Colors ==========*/
+            --hue: 0;
+            --sat: 0%;
+            --title-color: hsl(var(--hue), var(--sat), 20%);
+            --title-color-dark: hsl(var(--hue), var(--sat), 0%);
+            --text-color: hsl(var(--hue), var(--sat), 46%);
+            --body-color: hsl(var(--hue), var(--sat), 98%);
+            --container-color: #fff;
+            
+            /*========== Font and typography ==========*/
+            --body-font: 'Montserrat', sans-serif;
+            --title-font: 'Playfair Display', serif;
+            --biggest-font-size: 2rem;
+            --bigger-font-size: 1.25rem;
+            --big-font-size: 1.125rem;
+            --normal-font-size: .938rem;
+            --small-font-size: .813rem;
+            --smaller-font-size: .75rem;
+            --tiny-font-size: .625rem;
+            
+            /*========== Font weight ==========*/
+            --font-medium: 500;
+            --font-semi-bold: 600;
+            
+            /*========== Margenes Bottom ==========*/
+            --mb-0-25: .25rem;
+            --mb-0-5: .5rem;
+            --mb-0-75: .75rem;
+            --mb-1: 1rem;
+            --mb-1-5: 1.5rem;
+            --mb-2: 2rem;
+            --mb-2-5: 2.5rem;
+            
+            /*========== z index ==========*/
+            --z-tooltip: 10;
+            --z-fixed: 100;
+        }
+
+        @media screen and (min-width: 968px) {
+            :root {
+                --biggest-font-size: 2.5rem;
+                --bigger-font-size: 1.5rem;
+                --big-font-size: 1.25rem;
+                --normal-font-size: 1rem;
+                --small-font-size: .875rem;
+                --smaller-font-size: .813rem;
+            }
+        }
+
+        /*=============== BASE ===============*/
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: var(--header-height) 0 0 0;
+            font-family: var(--body-font);
+            font-size: var(--normal-font-size);
+            background-color: #000000;
+            color: #e2e8f0;
+        }
+
+        h1, h2, h3 {
+            color: #ffffff;
+            font-weight: var(--font-semi-bold);
+            font-family: var(--title-font);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /*=============== REUSABLE CSS CLASSES ===============*/
+        .container {
+            max-width: 1024px;
+            margin-left: var(--mb-1-5);
+            margin-right: var(--mb-1-5);
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .main {
+            overflow: hidden;
+        }
+
+        .section {
+            padding: 6.5rem 0 1rem;
+        }
+
+        .section__title {
+            position: relative;
+            font-size: var(--biggest-font-size);
+            margin-bottom: var(--mb-2-5);
+            text-align: center;
+            font-family: var(--title-font);
+        }
+
+        .section__title-gradient {
+            background: linear-gradient(90deg, #c9a24d, #f3e7a1, #6b7b3d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /*=============== HEADER & NAV ===============*/
+        .header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: var(--z-fixed);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav {
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav__logo {
+            display: flex;
+            width: 1.5rem;
+        }
+
+        .nav__toggle {
+            font-size: 1.2rem;
+            color: var(--title-color);
+            cursor: pointer;
+        }
+
+        .nav__list {
+            display: flex;
+            flex-direction: row;
+            column-gap: 3.5rem;
+        }
+
+        .nav__link {
+            font-family: var(--body-font);
+            color: #ffffff;
+            font-size: var(--normal-font-size);
+            text-transform: uppercase;
+            font-weight: var(--font-medium);
+            transition: .3s;
+        }
+
+        .nav__link:hover {
+            color: #c9a24d;
+        }
+
+        .nav__close {
+            font-size: 1.5rem;
+            color: #ffffff;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+        }
+
+        .nav__close,
+        .nav__toggle {
+            display: none;
+        }
+
+        /* Change background header */
+        .scroll-header {
+            background-color: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 1px 4px hsla(0, 4%, 15%, .1);
+        }
+
+        /* Active link */
+        .active-link {
+            color: #c9a24d;
+        }
+
+        /*=============== HOME ===============*/
+        .home__img {
+            width: 250px;
+            position: absolute;
+            top: -16rem;
+            right: 1.5rem;
+        }
+
+        .home__data {
+            padding-top: 5rem;
+        }
+
+        .home__header {
+            position: relative;
+        }
+
+        .home__title {
+            font-size: var(--biggest-font-size);
+            background: linear-gradient(90deg, #c9a24d, #f3e7a1, #6b7b3d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: absolute;
+            top: -4rem;
+            left: 1rem;
+        }
+
+        .home__subtitle {
+            font-size: var(--big-font-size);
+            margin-bottom: var(--mb-2-5);
+            color: #cbd5e0;
+        }
+
+        .home__title-description {
+            font-size: var(--big-font-size);
+            font-weight: var(--font-medium);
+            margin-bottom: var(--mb-1);
+        }
+
+        .home__description {
+            margin-bottom: var(--mb-2-5);
+            line-height: 2rem;
+            color: #a0aec0;
+        }
+
+        .home__price {
+            font-size: var(--normal-font-size);
+            font-weight: var(--font-semi-bold);
+            margin-left: var(--mb-0-75);
+        }
+
+        /*=============== BUTTONS ===============*/
+        .button {
+            display: inline-block;
+            background-color: #c9a24d;
+            color: #fff;
+            padding: 1.25rem 2rem;
+            font-weight: var(--font-medium);
+            border-radius: .5rem;
+            transition: .3s;
+        }
+
+        .button:hover {
+            background-color: #a88940;
+        }
+
+        .button__icon {
+            font-size: 1.2rem;
+        }
+
+        .button--flex {
+            display: inline-flex;
+            align-items: center;
+            column-gap: .75rem;
+        }
+
+        /*=============== SPONSOR ===============*/
+        .sponsor__img {
+            width: 90px;
+        }
+
+        .sponsor__container {
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            row-gap: 5rem;
+            justify-items: center;
+            align-items: center;
+        }
+
+        /*=============== SPECS ===============*/
+        .specs__container {
+            position: relative;
+        }
+
+        .specs__content {
+            row-gap: 1.5rem;
+        }
+
+        .specs__data {
+            display: grid;
+            row-gap: .25rem;
+        }
+
+        .specs__icon {
+            font-size: 1.2rem;
+            color: #c9a24d;
+        }
+
+        .specs__title {
+            font-size: var(--normal-font-size);
+            font-weight: var(--font-medium);
+        }
+
+        .specs__subtitle {
+            font-size: var(--smaller-font-size);
+            color: #a0aec0;
+        }
+
+        .specs__data:nth-child(1),
+        .specs__data:nth-child(4) {
+            margin-left: 1.5rem;
+        }
+
+        .specs__img {
+            width: 250px;
+            position: absolute;
+            top: 2rem;
+            right: -4rem;
+        }
+
+        /*=============== CASE ===============*/
+        .case__container {
+            position: relative;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .case__data {
+            padding: 5rem 0 3rem;
+        }
+
+        .case__img {
+            width: 250px;
+            position: absolute;
+            left: -7rem;
+        }
+
+        .case__description {
+            margin-bottom: var(--mb-1-5);
+            line-height: 1.8rem;
+            color: #a0aec0;
+        }
+
+        /*=============== DISCOUNT ===============*/
+        .discount__container {
+            position: relative;
+            background-color: #1a1a1a;
+            padding: 2rem 1.5rem;
+            border-radius: .75rem;
+        }
+
+        .discount__title {
+            font-size: var(--big-font-size);
+            margin-bottom: var(--mb-0-75);
+            color: #ffffff;
+        }
+
+        .discount__description {
+            margin-bottom: var(--mb-1);
+            color: #cbd5e0;
+        }
+
+        .discount__img {
+            width: 300px;
+            position: absolute;
+            top: 4rem;
+            right: -11rem;
+        }
+
+        /*=============== PRODUCTS ===============*/
+        .products__line {
+            line-height: 4rem;
+        }
+
+        .products__container {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5rem 1.5rem;
+            padding-top: 3rem;
+        }
+
+        .products__card {
+            position: relative;
+            height: 132px;
+            background-color: #1a1a1a;
+            padding: .75rem;
+            border-radius: .5rem;
+            display: grid;
+        }
+
+        .products__img {
+            width: 80px;
+            position: absolute;
+            inset: 0;
+            margin-left: auto;
+            margin-right: auto;
+            top: -3rem;
+        }
+
+        .products__content {
+            align-self: flex-end;
+        }
+
+        .products__title,
+        .products__price {
+            font-size: var(--small-font-size);
+            color: #ffffff;
+        }
+
+        .products__price {
+            font-weight: var(--font-semi-bold);
+            color: #c9a24d;
+        }
+
+        .products__button {
+            position: absolute;
+            right: .5rem;
+            bottom: .5rem;
+            padding: .5rem;
+            border-radius: .35rem;
+            display: none;
+        }
+
+        /*=============== CONTACT ===============*/
+        .contact__container {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact__info {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .contact__card {
+            background-color: #1a1a1a;
+            padding: 2rem;
+            border-radius: .75rem;
+            text-align: center;
+        }
+
+        .contact__icon {
+            font-size: 2rem;
+            color: #c9a24d;
+            margin-bottom: 1rem;
+        }
+
+        .contact__title {
+            font-size: var(--big-font-size);
+            margin-bottom: var(--mb-0-75);
+            color: #ffffff;
+        }
+
+        .contact__description {
+            font-size: var(--normal-font-size);
+            color: #a0aec0;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact__map {
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .contact__map iframe {
+            filter: grayscale(1) invert(0.9);
+        }
+
+        /*=============== FOOTER ===============*/
+        .footer__container {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            row-gap: 2rem;
+        }
+
+        .footer__logo {
+            width: 2rem;
+        }
+
+        .footer__title {
+            font-size: var(--big-font-size);
+            font-weight: var(--font-medium);
+            margin-bottom: var(--mb-1);
+        }
+
+        .footer__links {
+            display: flex;
+            flex-direction: column;
+            row-gap: .5rem;
+        }
+
+        .footer__link {
+            color: #a0aec0;
+        }
+
+        .footer__link:hover {
+            color: #c9a24d;
+        }
+
+        .footer__form {
+            display: flex;
+            column-gap: .5rem;
+            background-color: #1a1a1a;
+            padding: .5rem .75rem;
+            border-radius: .5rem;
+            margin-bottom: var(--mb-2);
+        }
+
+        .footer__input {
+            background-color: #1a1a1a;
+            width: 90%;
+            color: #ffffff;
+        }
+
+        .footer__input::placeholder {
+            color: #718096;
+            font-size: var(--normal-font-size);
+            font-family: var(--body-font);
+        }
+
+        .footer__social {
+            display: flex;
+            column-gap: 1.25rem;
+        }
+
+        .footer__social-link {
+            display: inline-flex;
+            color: #ffffff;
+            background-color: #1a1a1a;
+            padding: .5rem;
+            border-radius: .25rem;
+            font-size: 1rem;
+        }
+
+        .footer__social-link:hover {
+            background-color: #c9a24d;
+            color: #fff;
+        }
+
+        .footer__copy {
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        .footer__copy-link {
+            font-size: var(--smaller-font-size);
+            color: #718096;
+        }
+
+        .footer__contact-text {
+            color: #a0aec0;
+            font-size: var(--small-font-size);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer__contact-text i {
+            color: #c9a24d;
+        }
+
+        /*=============== SCROLL UP ===============*/
+        .scrollup {
+            position: fixed;
+            right: 1rem;
+            bottom: -20%;
+            display: flex;
+            background-color: #1a1a1a;
+            border-radius: .25rem;
+            padding: .45rem;
+            opacity: 9;
+            z-index: var(--z-tooltip);
+            transition: .4s;
+        }
+
+        .scrollup:hover {
+            background-color: #c9a24d;
+            opacity: 1;
+        }
+
+        .scrollup__icon {
+            color: #ffffff;
+            font-size: 1.35rem;
+        }
+
+        .scrollup:hover .scrollup__icon {
+            color: #fff;
+        }
+
+        /* Show Scroll Up*/
+        .show-scroll {
+            bottom: 5rem;
+        }
+
+        /*=============== SCROLL BAR ===============*/
+        ::-webkit-scrollbar {
+            width: .60rem;
+            border-radius: .5rem;
+            background-color: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #4a5568;
+            border-radius: .5rem;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #c9a24d;
+        }
+
+        /*=============== MEDIA QUERIES ===============*/
+        /* For small devices */
+        @media screen and (max-width: 340px) {
+            .container {
+                margin-left: var(--mb-1);
+                margin-right: var(--mb-1);
+            }
+
+            .section__title {
+                font-size: var(--big-font-size);
+            }
+
+            .home__img {
+                width: 200px;
+                top: -13rem;
+            }
+
+            .home__title {
+                top: -4rem;
+                font-size: var(--bigger-font-size);
+            }
+
+            .home__data {
+                padding-top: 1rem;
+            }
+
+            .home__description {
+                font-size: var(--small-font-size);
+            }
+
+            .specs__img {
+                width: 200px;
+            }
+
+            .case__container {
+                grid-template-columns: .6fr 1fr;
+            }
+
+            .case__img {
+                width: 220px;
+                top: -2rem;
+                left: -9rem;
+            }
+
+            .case__data {
+                padding: 0;
+            }
+
+            .products__container {
+                grid-template-columns: 142px;
+                justify-content: center;
+            }
+
+            .contact__container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact__map {
+                min-height: 300px;
+            }
+        }
+
+        /* For medium devices */
+        @media screen and (min-width: 576px) {
+            .home__container {
+                grid-template-columns: .8fr 1fr;
+            }
+
+            .home__data {
+                padding-top: 2rem;
+            }
+
+            .home__img {
+                top: -7rem;
+                left: 0;
+            }
+
+            .specs__img {
+                position: initial;
+            }
+
+            .specs__container {
+                grid-template-columns: repeat(2, 1fr);
+                justify-items: center;
+                align-items: center;
+            }
+
+            .case__img {
+                position: initial;
+            }
+
+            .case__data {
+                padding: 0;
+            }
+
+            .case__container {
+                grid-template-columns: max-content 250px;
+                justify-content: center;
+                align-items: center;
+                column-gap: 2rem;
+            }
+
+            .discount__img {
+                position: initial;
+            }
+
+            .discount__container {
+                grid-template-columns: repeat(2, 1fr);
+                justify-items: center;
+                align-items: center;
+            }
+
+            .products__container {
+                grid-template-columns: repeat(3, 142px);
+                justify-content: center;
+            }
+
+            .contact__container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media screen and (min-width: 767px) {
+            body {
+                margin: 0;
+            }
+
+            .section {
+                padding: 6rem 0 2rem;
+            }
+
+            .nav {
+                height: calc(var(--header-height) + 1.5rem);
+            }
+
+            .nav__logo {
+                width: 2rem;
+            }
+
+            .nav__list {
+                flex-direction: row;
+                column-gap: 3.5rem;
+            }
+
+            .nav__link {
+                font-size: var(--normal-font-size);
+                text-transform: initial;
+            }
+
+            .nav__toggle,
+            .nav__close {
+                display: none;
+            }
+
+            .home__container {
+                position: relative;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .home__img {
+                top: -9rem;
+                left: 4rem;
+            }
+
+            .home__data {
+                padding-top: 8rem;
+            }
+
+            .specs__img {
+                width: 300px;
+            }
+
+            .case__container {
+                column-gap: 5rem;
+            }
+
+            .case__img {
+                width: 300px;
+            }
+
+            .case__description {
+                margin-bottom: var(--mb-2);
+            }
+
+            .discount__container {
+                grid-template-columns: 250px max-content;
+                justify-content: center;
+                column-gap: 5rem;
+                padding: 3rem 0;
+            }
+
+            .discount__title {
+                font-size: var(--bigger-font-size);
+                margin-bottom: var(--mb-1);
+            }
+
+            .discount__description {
+                margin-bottom: var(--mb-2);
+            }
+
+            .products__container {
+                grid-template-columns: repeat(3, 162px);
+                gap: 6rem 3rem;
+                padding-top: 5rem;
+            }
+
+            .products__card {
+                height: 152px;
+                padding: .85rem;
+            }
+
+            .products__img {
+                width: 95px;
+            }
+
+            .footer__container {
+                grid-template-columns: .4fr .7fr .7fr 1fr;
+            }
+
+            .contact__container {
+                grid-template-columns: 400px 1fr;
+                gap: 3rem;
+            }
+        }
+
+        /* For large devices */
+        @media screen and (min-width: 1024px) {
+            .container {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .home__img {
+                width: 300px;
+                top: -15rem;
+            }
+
+            .home__title {
+                top: -5rem;
+                left: 3.5rem;
+            }
+
+            .home__description {
+                padding-right: 5rem;
+            }
+
+            .sponsor__img {
+                width: 100px;
+            }
+
+            .discount__img {
+                width: 350px;
+            }
+
+            .footer__container {
+                padding-top: 3rem;
+            }
+
+            .footer__copy {
+                margin-top: 9rem;
+            }
+        }
+
+        /* Custom Styles for Image */
+        .home__container {
+            grid-template-columns: 520px 1fr;
+            align-items: start;
+            gap: 3rem;
+            padding-top: 160px;
+        }
+
+        .home__image-wrapper {
+            align-self: start;
+        }
+
+        .home__img {
+            max-width: 520px;
+            width: 100%;
+            height: auto;
+            border-radius: 18px;
+            box-shadow: 0 20px 40px rgba(0,0,0,.35);
+            position: static;
+            top: auto;
+            right: auto;
+            left: auto;
+        }
+
+        .home__data {
+            padding-left: 0;
+            position: relative;
+            z-index: 2;
+            padding-top: 0;
+        }
+
+        .home__header {
+            max-width: 520px;
+            margin-bottom: 1rem;
+        }
+
+        .home__title {
+            position: static;
+            font-size: 3.4rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: 1.2px;
+            margin-bottom: 1rem;
+        }
+
+        .nav__logo-img {
+            width: 240px;
+            height: auto;
+            object-fit: contain;
+            padding: 6px;
+            border-radius: 10px;
+            filter: drop-shadow(0 0 8px rgba(201,162,77,0.7)) drop-shadow(0 0 16px rgba(0,0,0,0.6));
+            transition: transform 0.3s ease;
+        }
+
+        .nav__logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        @media screen and (max-width: 768px) {
+            .home__container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding-top: 6rem;
+            }
+
+            .home__data {
+                text-align: center;
+                padding-left: 0;
+            }
+
+            .home__header {
+                margin: 0 auto;
+            }
+
+            .home__img {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .home__title {
+                font-size: 2.5rem;
+            }
+
+            .nav__logo-img {
+                width: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">
+                <img src="./images/Aurah_Logo-removebg-preview.png" alt="Spices Logo" class="nav__logo-img">
+            </a>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#specs" class="nav__link">Benefits</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#products" class="nav__link">Products</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="./contact.html" class="nav__link">Contact</a>
+                    </li>
+                </ul>
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
+            </div>
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-function-line"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!--=============== HOME ===============-->
+        <section class="home section" id="home">
+            <div class="home__container container grid">
+                <div class="home__image-wrapper">
+                    <img src="./images/perminumapices.png" alt="Premium Spices" class="home__img">
+                </div>
+                
+                <div class="home__data">
+                    <div class="home__header">
+                        <h1 class="home__title">Premium Spices</h1>
+                        <h2 class="home__subtitle">Green Cardamom, Black Pepper & Cloves</h2>
+                    </div>
+
+                    <div class="home__footer">
+                        <h3 class="home__title-description">Overview</h3>
+                        <p class="home__description">
+                            Experience the finest selection of handpicked Green Cardamom, robust Black Pepper, and aromatic Cloves. 
+                            Perfect for enhancing flavors, health, and wellness. Sourced responsibly and delivered fresh.
+                        </p>
+                        <a href="./contact.html" class="button button--flex">
+                            <i class="ri-phone-line button__icon"></i> Contact Us for Orders
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!--=============== SPONSOR ===============-->
+        <section class="sponsor section">
+            <div class="sponsor__container container grid">
+                <img src="./images/sponsor1.png" alt="Organic Certified" class="sponsor__img">
+                <img src="./images/sponsor2.png" alt="Fair Trade" class="sponsor__img">
+                <img src="./images/sponsor3.png" alt="Eco Friendly" class="sponsor__img">
+                <img src="./images/sponsor4.png" alt="Quality Assurance" class="sponsor__img">
+            </div>
+        </section>
+
+        <!--=============== SPECS ===============-->
+        <section class="specs section grid" id="specs">
+            <h2 class="section__title section__title-gradient">Benefits</h2>
+
+            <div class="specs__container container grid">
+                <div class="specs__content grid">
+                    <div class="specs__data">
+                        <i class="ri-leaf-line specs__icon"></i>
+                        <h3 class="specs__title">Green Cardamom</h3>
+                        <span class="specs__subtitle">Rich in antioxidants<br>Supports digestion & freshens breath</span>
+                    </div>
+
+                    <div class="specs__data">
+                        <i class="ri-fire-line specs__icon"></i>
+                        <h3 class="specs__title">Black Pepper</h3>
+                        <span class="specs__subtitle">Enhances flavor<br>Improves metabolism & immunity</span>
+                    </div>
+
+                    <div class="specs__data">
+                        <i class="ri-flower-line specs__icon"></i>
+                        <h3 class="specs__title">Cloves</h3>
+                        <span class="specs__subtitle">Anti-inflammatory<br>Good for oral health & rich aroma</span>
+                    </div>
+
+                    <div class="specs__data">
+                        <i class="ri-shield-check-line specs__icon"></i>
+                        <h3 class="specs__title">Pure & Natural</h3>
+                        <span class="specs__subtitle">No additives<br>Freshly harvested & sun-dried</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <img src="./images/aboutspices.png" alt="Green Cardamom Black Pepper Cloves" class="specs__img" style="width: 500px;">
+                </div>
+            </div>
+        </section>
+
+        <!--=============== CASE ===============-->
+        <section class="case section grid" id="case">
+            <h2 class="section__title section__title-gradient">Our Quality</h2>
+
+            <div class="case__container container grid">
+                <div>
+                    <img src="./images/quality.png" alt="Premium Quality Spices" class="case__img" style="width: 400px;">
+                </div>
+
+                <div class="case__data">
+                    <p class="case__description">
+                        We source only the finest quality spices directly from trusted farms. Each batch is carefully selected, 
+                        processed with traditional methods, and tested for purity. Our commitment to quality ensures you receive 
+                        authentic, aromatic spices every time.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!--=============== DISCOUNT ===============-->
+        <section class="discount section">
+            <div class="discount__container container grid">
+                <div class="discount__animate">
+                    <h2 class="discount__title">Discover the Essence<br>of Authentic Spices</h2>
+                    <p class="discount__description">Wholesale and bulk orders available. Contact us for pricing.</p>
+                    <a href="./contact.html" class="button button--flex">
+                        <i class="ri-phone-line button__icon"></i> Get in Touch
+                    </a>
+                </div>
+
+                <img src="./images/Discount.png" alt="Premium Spices" class="discount__img" style="height: 400px; width: 500px;">
+            </div>
+        </section>
+
+        <!--=============== PRODUCTS ===============-->
+        <section class="products section" id="products">
+            <h2 class="section__title section__title-gradient products__line">
+                Choose <br> Your Spice
+            </h2>
+
+            <div class="products__container container grid">
+                <article class="products__card">
+                    <div class="products__content">
+                        <img src="./images/greencardamon.png" alt="Green Cardamom" class="products__img" style="height: 100px; width: 125px;">
+                        <h3 class="products__title">Green Cardamom</h3>
+                        <span class="products__price">Premium Quality</span>
+                    </div>
+                </article>
+                
+                <article class="products__card">
+                    <div class="products__content">
+                        <img src="./images/blackpeper.png" alt="Black Pepper" class="products__img" style="height: 100px; width: 125px;">
+                        <h3 class="products__title">Black Pepper</h3>
+                        <span class="products__price">Premium Quality</span>
+                    </div>
+                </article>
+                
+                <article class="products__card">
+                    <div class="products__content">
+                        <img src="./images/cloves.png" alt="Cloves" class="products__img" style="height: 100px; width: 125px;">
+                        <h3 class="products__title">Cloves</h3>
+                        <span class="products__price">Premium Quality</span>
+                    </div>
+                </article>
+                
+                <article class="products__card">
+                    <div class="products__content">
+                        <img src="./images/spicecombo.png" alt="Spice Combo Pack" class="products__img" style="height: 100px; width: 125px;">
+                        <h3 class="products__title">Spices Combo</h3>
+                        <span class="products__price">Premium Quality</span>
+                    </div>
+                </article>
+
+                <article class="products__card">
+                    <div class="products__content">
+                        <img src="./images/giftbox.png" alt="Gift Pack" class="products__img" style="height: 100px; width: 125px;">
+                        <h3 class="products__title">Gift Pack</h3>
+                        <span class="products__price">Premium Quality</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!--=============== CONTACT ===============-->
+        <section class="contact section" id="contact">
+            <h2 class="section__title section__title-gradient">Contact Us</h2>
+            
+            <div class="contact__container container grid">
+                <div class="contact__info">
+                    <div class="contact__card">
+                        <i class="ri-phone-line contact__icon"></i>
+                        <h3 class="contact__title">Phone</h3>
+                        <p class="contact__description">+1 (555) 123-4567</p>
+                        <p class="contact__description">+1 (555) 987-6543</p>
+                    </div>
+
+                    <div class="contact__card">
+                        <i class="ri-mail-line contact__icon"></i>
+                        <h3 class="contact__title">Email</h3>
+                        <p class="contact__description">orders@premiumspices.com</p>
+                        <p class="contact__description">info@premiumspices.com</p>
+                    </div>
+
+                    <div class="contact__card">
+                        <i class="ri-map-pin-line contact__icon"></i>
+                        <h3 class="contact__title">Location</h3>
+                        <p class="contact__description">123 Spice Market Street</p>
+                        <p class="contact__description">Madurai, Tamil Nadu, India</p>
+                    </div>
+                </div>
+
+                <div class="contact__map">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125422.3664596!2d77.2588!3d11.1085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba907b0424d75b7%3A0x4750551698a91687!2sTiruppur%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1234567890"
+                        width="100%" 
+                        height="400" 
+                        style="border:0; border-radius: 0.75rem;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--=============== FOOTER ===============-->
+    <footer class="footer section">
+        <div class="footer__container container grid">
+            <a href="#" class="footer__logo">
+                <img src="./images/Aurah_Logo-removebg-preview.png" alt="Spices Logo">
+            </a>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Products</h3>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Green Cardamom</a></li>
+                    <li><a href="#" class="footer__link">Black Pepper</a></li>
+                    <li><a href="#" class="footer__link">Cloves</a></li>
+                    <li><a href="#" class="footer__link">Spice Combo</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Support</h3>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Order help</a></li>
+                    <li><a href="#" class="footer__link">Wholesale</a></li>
+                    <li><a href="#" class="footer__link">Delivery info</a></li>
+                    <li><a href="#" class="footer__link">Contact us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <form action="" class="footer__form">
+                    <input type="email" placeholder="Email" class="footer__input">
+                    <button class="button button--flex">
+                        <i class="ri-send-plane-line button__icon"></i> Subscribe
+                    </button>
+                </form>
+
+                <div class="footer__social">
+                    <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
+                        <i class="ri-facebook-fill"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                    <a href="https://twitter.com/" target="_blank" class="footer__social-link">
+                        <i class="ri-twitter-line"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <p class="footer__copy">
+            <a href="#" class="footer__copy-link">&#169; 2024 Premium Spices. All rights reserved.</a>
+        </p>
+    </footer>
+
+    <!--=============== SCROLL UP ===============-->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-s-line scrollup__icon"></i>
+    </a>
+    
+    <!--=============== SCROLL REVEAL ===============-->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <script>
+        const navMenu = document.getElementById('nav-menu'),
+              navToggle = document.getElementById('nav-toggle'),
+              navClose = document.getElementById('nav-close');
+
+        if(navToggle && navMenu){
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.add('show-menu')
+            })
+        }
+
+        if(navClose && navMenu){
+            navClose.addEventListener('click', () => {
+                navMenu.classList.remove('show-menu')
+            })
+        }
+
+        const navLink = document.querySelectorAll('.nav__link');
+
+        function linkAction(){
+            const navMenu = document.getElementById('nav-menu');
+            if(navMenu) navMenu.classList.remove('show-menu');
+        }
+        navLink.forEach(n => n.addEventListener('click', linkAction));
+
+        function scrollHeader(){
+            const header = document.getElementById('header');
+            if(header){
+                if(this.scrollY >= 50) header.classList.add('scroll-header'); 
+                else header.classList.remove('scroll-header')
+            }
+        }
+        window.addEventListener('scroll', scrollHeader);
+
+        function scrollUp(){
+            const scrollUp = document.getElementById('scroll-up');
+            if(scrollUp){
+                if(this.scrollY >= 200) scrollUp.classList.add('show-scroll'); 
+                else scrollUp.classList.remove('show-scroll')
+            }
+        }
+        window.addEventListener('scroll', scrollUp);
+
+        const sections = document.querySelectorAll('section[id]');
+
+        function scrollActive(){
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(current => {
+                const sectionHeight = current.offsetHeight;
+                const sectionTop = current.offsetTop - 50;
+                const sectionId = current.getAttribute('id');
+                const navLink = document.querySelector('.nav__menu a[href*=' + sectionId + ']');
+
+                if(navLink){
+                    if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
+                        navLink.classList.add('active-link');
+                    } else {
+                        navLink.classList.remove('active-link');
+                    }
+                }
+            })
+        }
+        window.addEventListener('scroll', scrollActive);
+
+        if(typeof ScrollReveal !== 'undefined'){
+            const sr = ScrollReveal({
+                distance: '60px',
+                duration: 2500,
+                delay: 400,
+                reset: true
+            });
+
+            sr.reveal(`.home__header, .section__title`,{delay: 600});
+            sr.reveal(`.home__footer`,{delay: 700});
+            sr.reveal(`.home__img`,{delay: 900, origin: 'top'});
+            sr.reveal(`.sponsor__img, .products__card, .footer__logo, .footer__content, .footer__copy`,{origin: 'top', interval: 100});
+            sr.reveal(`.specs__data, .discount__animate`,{origin: 'left', interval: 100});
+            sr.reveal(`.specs__img, .discount__img`,{origin: 'right'});
+            sr.reveal(`.case__img`,{origin: 'top'});
+            sr.reveal(`.case__data`);
+            sr.reveal(`.contact__card`,{origin: 'left', interval: 100});
+            sr.reveal(`.contact__map`,{origin: 'right', delay: 600});
+        }
+    </script>
+</body>
+</html>
