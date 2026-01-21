@@ -5,20 +5,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./c.css">
+    <style>
+:root{
+  --bg-main: #1b1209;        /* deep spice brown */
+  --card-bg: #f6efe6;       /* warm parchment */
+  --card-bg-alt:#efe3d3;    /* royal beige */
+  --accent: #b68b2e;        /* antique gold */
+  --accent-soft:#e0c27a;    /* soft gold */
+  --text-dark:#2a1a0a;      /* roasted brown */
+  --btn-bg:#8a5a14;         /* royal spice */
+  --btn-hover:#6f470f;      /* darker spice */
+}
+body{
+  background:
+    radial-gradient(900px 500px at top, rgba(182,139,46,0.15), transparent 60%),
+    linear-gradient(180deg, #120b05 0%, var(--bg-main) 70%);
+}
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    radial-gradient(rgba(182,139,46,0.03) 1px, transparent 1px);
+  background-size: 120px 120px, 180px 180px;
+  opacity:0.35;
+  z-index:0;
+}
+.container{
+  position:relative;
+  z-index:1;
+}
+.card{
+  background: linear-gradient(180deg, var(--card-bg), #ffffff);
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.6),
+    inset 0 -1px 0 rgba(0,0,0,0.08);
+  border: 1px solid rgba(182,139,46,0.35);
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.9)),
+    radial-gradient(rgba(90,60,20,0.06) 1px, transparent 1px);
+  background-size: cover, 120px 120px;
+}
+.card-blue{
+  background: linear-gradient(180deg, var(--card-bg-alt), #ffffff);
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.32),
+    inset 0 1px 0 rgba(255,255,255,0.55),
+    inset 0 -1px 0 rgba(0,0,0,0.07);
+  border: 1px solid rgba(182,139,46,0.3);
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.9)),
+    radial-gradient(rgba(90,60,20,0.06) 1px, transparent 1px);
+  background-size: cover, 120px 120px;
+}
+.product-info h2,
+.product-info p,
+.price{
+  color: var(--text-dark) !important;
+}
+.product-info h2 {
+  letter-spacing: 0.5px;
+}
+.buy-btn{
+  background: var(--btn-bg);
+  color:#fff;
+  position: relative;
+  overflow: hidden;
+}
+.buy-btn:hover{
+  background: var(--btn-hover);
+}
+.buy-btn::after{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-100%;
+  width:60%;
+  height:200%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(224,194,122,0.25) 45%,
+    rgba(255,240,190,0.45) 50%,
+    rgba(224,194,122,0.25) 55%,
+    transparent 100%
+  );
+  transform: rotate(10deg);
+  animation: foilShine 8s ease-in-out infinite;
+}
+.buy-btn::before{
+  content:'';
+  position:absolute;
+  inset:-30%;
+  background-image:
+    radial-gradient(rgba(255,215,140,0.35) 1px, transparent 1px),
+    radial-gradient(rgba(182,139,46,0.25) 1px, transparent 1px);
+  background-size: 22px 22px, 34px 34px;
+  opacity:0.25;
+  pointer-events:none;
+  animation: fleckDrift 16s linear infinite;
+}
+@keyframes foilShine{
+  0%{ left:-120%; }
+  40%{ left:120%; }
+  100%{ left:120%; }
+}
+@keyframes fleckDrift{
+  from{ transform: translateY(0); }
+  to{ transform: translateY(-40px); }
+}
+.fav{
+  background: rgba(47,111,78,0.08);
+}
+.svg{
+  stroke: var(--accent);
+}
+</style>
 </head>
 <body>
     <main class="container">
         <section class="card">
             <div class="product-image">
-                <img src="./images/product1.png" alt="OFF-white Red Edition" draggable="false">
+                <img src="./images/product2.png" alt="OFF-white Red Edition" draggable="false">
             </div>
             <div class="product-info">
-                <h2>NIKE X OFF-WHITE</h2>
-                <p>The 10: Air Jordan 1 off-white - chicago</p>
-                <div class="price">$999</div>
+                <h2 style="color: black;">FuEl yOuR StReNgTh</h2>
+                <p style="color: black;">𝑾𝒉𝒐𝒍𝒆𝒔𝒐𝒎𝒆 𝑪𝒓𝒖𝒏𝒄𝒉 𝒊𝒏 𝑬𝒗𝒆𝒓𝒚 𝑩𝒊𝒕𝒆</p>
+                <div class="price" style="color: black;">EARTHLY</div>
             </div>
             <div class="btn">
-                <a href="./nuts.html"><button class="buy-btn">Buy Now</button></a>
+                <a href="./nuts.html"><button class="buy-btn">Start Fueling</button></a>
                 <button class="fav">
                     <svg class="svg" id="i-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                         <path d="M16 2 L20 12 30 12 22 19 25 30 16 23 7 30 10 19 2 12 12 12 Z"></path>
@@ -29,15 +148,15 @@
         
         <section class="card card-blue">
             <div class="product-image">
-                <img src="./images/product2.png" alt="OFF-white Blue Edition" draggable="false">
+                <img src="./images/product1.png" alt="OFF-white Blue Edition" draggable="false">
             </div>
             <div class="product-info">
-                <h2>Nike X OFF-white</h2>
-                <p>Air Jordan 1 Retro High "off-white - UNC" sneakers</p>
-                <div class="price">$1599</div>
+                <h2>𝒯𝓊𝓇𝓃 𝐸𝓋𝑒𝓇𝓎 𝑀𝑒𝒶𝓁 𝐿𝑒𝑔𝑒𝓃𝒹𝒶𝓇𝓎</h2>
+                <p>Їṅẗö ä Ṁöṁëṅẗ öḟ Ṗüṛë Ḟḷäṿöṛ</p>
+                <div class="price">𝑺𝑰𝑮𝑵𝑨𝑻𝑼𝑹𝑬</div>
             </div>
             <div class="btn">
-                <a href="./sp.html"><button class="buy-btn">Buy Now</button></a>
+                <a href="./sp.html"><button class="buy-btn">Select the Finest</button></a>
                 <button class="fav">
                     <svg class="svg" id="i-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                         <path d="M16 2 L20 12 30 12 22 19 25 30 16 23 7 30 10 19 2 12 12 12 Z"></path>
